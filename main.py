@@ -8,9 +8,10 @@ from auth import AuthHandler
 
 application = Application(
     [
-        (r"^/api/test", AuthHandler),
+        (r"^/api/auth", AuthHandler),
         (r"^/ws", WSHandler),
     ],
+    cookie_secret="nuri's_big_secret",
 )
 
 if __name__ == "__main__":
