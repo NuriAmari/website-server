@@ -94,7 +94,8 @@ class WSHandler(WebSocketHandler):
 
         if board.turn == chess.BLACK:
             # check for auth cookie
-            if not r.sismember("COOKIES", self.get_secure_cookie("auth")):
+            auth_cookie = self.get_secure_cookie("auth")
+            if not auth_cookie or not r.sismember("COOKIES", auth_cookie):
                 return
 
         try:
