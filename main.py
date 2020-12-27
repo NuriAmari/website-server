@@ -12,6 +12,7 @@ application = Application(
         (r"^/ws", WSHandler),
     ],
     cookie_secret="nuri's_big_secret",
+    websocket_ping_interval=15,
 )
 
 if __name__ == "__main__":
