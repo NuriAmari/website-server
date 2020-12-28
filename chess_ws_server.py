@@ -78,6 +78,7 @@ class WSHandler(WebSocketHandler):
     def reset(self):
         reset_board()
         r.delete("HISTORY")
+        r.set("MR_UCI", "")
         broadcast(
             json.dumps(
                 {
