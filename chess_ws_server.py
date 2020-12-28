@@ -6,6 +6,8 @@ import redis
 import chess
 from tornado.websocket import WebSocketHandler
 
+from mail import send_notification
+
 clients: Set[WebSocketHandler] = set()
 r = redis.Redis(host="localhost", port=6379, db=0)
 
@@ -113,6 +115,10 @@ class WSHandler(WebSocketHandler):
                     {"FEN": new_board_state, "SAN": message, "MR_UCI": next_move.uci()}
                 )
             )
+
+            if board.turn == chess.BLACK:
+                # notify me, someone has made a valid move
+                send_notification()
 
             if board.is_game_over():
                 result = board.result()
