@@ -14,7 +14,7 @@ application = Application(
         (r"^/api/auth", AuthHandler),
         (r"^/ws", WSHandler),
     ],
-    cookie_secret="nuri's_big_secret",
+    cookie_secret=os.environ.get("TORNADO_COOKIE_SECRET"),
     websocket_ping_interval=15,
 )
 
