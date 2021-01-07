@@ -5,9 +5,12 @@ import os
 from tornado.web import Application
 from chess_ws_server import WSHandler
 from auth import AuthHandler
+from nuri_format import FormatHandler, LintHandler
 
 application = Application(
     [
+        (r"^/api/lint", LintHandler),
+        (r"^/api/format", FormatHandler),
         (r"^/api/auth", AuthHandler),
         (r"^/ws", WSHandler),
     ],
